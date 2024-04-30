@@ -1,5 +1,6 @@
 "use strict"
 function solveEquation(a, b, c) {
+  const d = b ** 2 - 4 * a * c;
   let arr = [];
 
   if (d < 0) {
@@ -15,5 +16,10 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  
+  const monthlyInterestRate = percent / 100 / 12;
+  const bodyOfLoan = amount - contribution;
+  const monthlyPayment = bodyOfLoan * (monthlyInterestRate + (monthlyInterestRate / (Math.pow(1 + monthlyInterestRate, countMonths) - 1)));
+  const roundedMonthlyPayment = parseFloat(monthlyPayment.toFixed(2));
+
+  return roundedMonthlyPayment;
 }
