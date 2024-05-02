@@ -1,25 +1,33 @@
 "use strict"
+
+ @param {number} a;
+ @param {number} b;
+ @param {number} c;
+ @returns {number[]};
+
+
 function solveEquation(a, b, c) {
   const d = b ** 2 - 4 * a * c;
-  let arr = [];
 
-  if (d < 0) {
-  } else if (d === 0) {
-    arr.push(-b / (2 * a));
+  if (d === 0) {
+    return [-b / (2 * a)];
+  } else if (d > 0) {
+    const sqrtD = Math.sqrt(d);
+    return [
+      (-b + sqrtD) / (2 * a),
+      (-b - sqrtD) / (2 * a),
+    ];
   } else {
-    arr.push((-b + Math.sqrt(d)) / (2 * a));
-    arr.push((-b - Math.sqrt(d)) / (2 * a));
-  }
-
-
-  return arr;
+    return [];
 }
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   const monthlyInterestRate = percent / 100 / 12;
   const bodyOfLoan = amount - contribution;
-  const monthlyPayment = bodyOfLoan * (monthlyInterestRate + (monthlyInterestRate / (Math.pow(1 + monthlyInterestRate, countMonths) - 1)));
+  const monthlyPayment = bodyOfLoan * (monthlyPercent +
+    (monthlyPercent / (Math.pow(1 + monthlyPercent, countMonths) - 1))) * countMonths;
   const roundedMonthlyPayment = parseFloat(monthlyPayment.toFixed(2));
 
-  return roundedMonthlyPayment;
+  return +parseFloat(totalMortgagePayment).toFixed(2);
 }
+
