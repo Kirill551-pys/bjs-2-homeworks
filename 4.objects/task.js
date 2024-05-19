@@ -11,13 +11,7 @@ function Student(name, gender, age) {
   };
   
   Student.prototype.addMarks = function(...marksToAdd) {
-    if (this.excluded) {
-      console.log('Не удается выставить оценки исключенному ученику.');
-      return;
-    }
-  
     if (!this.marks) {
-      console.log('Не удается добавить метки в несуществующий массив меток.');
       return;
     }
   
@@ -34,15 +28,9 @@ function Student(name, gender, age) {
   };
   
   Student.prototype.exclude = function(reason) {
-    if (this.excluded) {
-      console.log('Студент уже исключен.');
-      return;
-    }
-  
     this.excluded = true;
     delete this.marks;
     delete this.subject;
-    this.exclusionReason = reason;
   };
   
  
@@ -56,11 +44,7 @@ function Student(name, gender, age) {
   student1.addMarks(85, 90, 80);
   student2.addMarks(95, 92, 88);
   
-  console.log(student1.getAverage());
-  console.log(student2.getAverage()); 
- 
   student1.exclude('Low attendance');
   
   student1.addMarks(70, 80); 
   
-  console.log(student1.getAverage());
