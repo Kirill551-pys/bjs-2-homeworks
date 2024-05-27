@@ -6,26 +6,21 @@ class PrintEditionItem {
         this.state = state;
         this.type = type;
     }
-}
-
     fix() { 
         this.state *= 1.5;
     }
-
-class SortingBooks{
     set state(newState) { 
-    if (newState < 0) { 
-        this._state = 0; 
-    } else if (newState > 100) { 
-        this._state = 100; 
-    } else { 
-        this._state = newState; 
-    } 
-}
-
- get state(){
-    return this._state;
- }
+        if (newState < 0) { 
+            this._state = 0; 
+        } else if (newState > 100) { 
+            this._state = 100; 
+        } else { 
+            this._state = newState; 
+        } 
+    }
+    get state(){
+        return this._state;
+     }
 }
 
 class Magazine extends PrintEditionItem {
@@ -36,18 +31,32 @@ class Magazine extends PrintEditionItem {
 }
 
 class Book extends PrintEditionItem{
-    constructor(name, releaseDate, pagesCount, state = 100, autor) {
-		super(name, releaseDate, pagesCount, state = 100, autor);
-		this.type = "book";
-        this.autor = autor;
+    constructor(name, releaseDate, pagesCount, state = 100, author) {
+		super(name, releaseDate, pagesCount, state = 100, author);
+		this.author = author;
+        this.type = "book";
 	}
 }
-class Categories extends Book {
-    constructor(NovelBook, FantasticBook, DetectiveBook ) {
-		super(NovelBook, FantasticBook, DetectiveBook);
-		this.type = "novel", "fantastic", "detective";
+class NovelBook extends Book {
+    constructor(name, releaseYear, pagesCount, author) {
+      super(name, releaseYear, pagesCount, author);
+      this.type = "novel";
     }
-}
+  }
+  
+  class FantasticBook extends Book {
+    constructor(name, releaseYear, pagesCount, author) {
+      super(name, releaseYear, pagesCount, author);
+      this.type = "fantastic";
+    }
+  }
+  
+  class DetectiveBook extends Book {
+    constructor(name, releaseYear, pagesCount, author) {
+      super(name, releaseYear, pagesCount, author);
+      this.type = "detective";
+    }
+  }
 
 // Второе задание
 
@@ -64,7 +73,23 @@ class Library{
     }
   }
 
-  findBookBy(type, value) {                         
-    return this.books.filter(o => o[key] === value)
-  }     
-}   
+  findBookBy(type, value) {
+    for (const book of this.books) {
+      if (book[type] === value) {
+        return book;
+      }
+    }
+    return null;
+  }
+
+  giveBookByName(bookName) {
+    for (let i = 0; i < this.books.length; i++) {
+      if (this.books[i].name === bookName) {
+        const book = this.books[i];
+        this.books.splice(i, 1);
+        return book;
+      }
+    }
+    return null;
+  }
+}
