@@ -62,7 +62,6 @@ class NovelBook extends Book {
 
 class Library{
     constructor(name){
-    books = [];
     this.name = name;
     this.books = [];
 }
