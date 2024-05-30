@@ -72,9 +72,9 @@ class Library {
     }
   }
 
-  findBookBy(type, value) {
+  findBookBy(key, value) {
     for (let book of this.books) {
-      if (book[type] === value) {
+      if (book[key] === value) {
         return book;
       }
     }
