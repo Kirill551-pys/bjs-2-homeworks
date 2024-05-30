@@ -60,8 +60,8 @@ class NovelBook extends Book {
 
 // Второе задание
 
-class Library{
-    constructor(name){
+class Library {
+    constructor(name) {
     this.name = name;
     this.books = [];
 }
@@ -73,7 +73,7 @@ class Library{
   }
 
   findBookBy(type, value) {
-    for (const book of this.books) {
+    for (let book of this.books) {
       if (book[type] === value) {
         return book;
       }
@@ -84,9 +84,7 @@ class Library{
   giveBookByName(bookName) {
     for (let i = 0; i < this.books.length; i++) {
       if (this.books[i].name === bookName) {
-        const book = this.books[i];
-        this.books.splice(i, 1);
-        return book;
+        return this.books.splice(i, 1)[0];
       }
     }
     return null;
